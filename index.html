@@ -12,13 +12,13 @@
 
 <body class="flex" onload="onInit()">
     <header class="main-header">header</header>
-    <section class="gallery g-images hidden">gallery images</section>
-    <section class="editor">
+    <section class="gallery g-images">gallery images</section>
+    <section class="editor flex">
         <div class="image-container">
             <canvas class="canvas"></canvas>
         </div>
-        <div class="controls-container">
-            <input type="text" class="line-input" placeholder="Enter text here" />
+        <div class="controls-container grid">
+            <input type="text" class="line-input" placeholder="Enter text here" oninput="onTextEdit(this)" />
         </div>
     </section>
     <section class="gallery g-meme hidden">memes gallery</section>
@@ -26,6 +26,7 @@
 
     <script src="js/service.js"></script>
     <script src="js/controller.js"></script>
+   
 </body>
 
 </html>
