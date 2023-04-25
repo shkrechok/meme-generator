@@ -24,9 +24,11 @@ let memService = {
             {
                 id: 1,
                 txt: 'I sometimes eat Falafel',
+                font: 'Impact',
                 size: 20,
                 align: 'left',
-                color: 'red',
+                strokeColor: 'black',
+                fillColor: 'white',
                 pos: { x: 35, y: 35 },
             }
         ]

@@ -19,11 +19,27 @@
         </div>
         <div class="controls-container grid">
             <input type="text" class="line-input" placeholder="Enter text here" oninput="onTextEdit(this)" />
+            <ul class="lines-pos clean-list ">
+            </ul>
+            <ul class="text-edit clean-list ">
+                <li class="font-size" >
+                    <button  onclick="onFontSizeChange(1)">A+</button>
+                </li>
+                <li class="font-size" >
+                    <button  onclick="onFontSizeChange(-1)">A-</button>
+                </li>
+                <li  class="font-fill" >
+                    <button onclick="onOpenPalete()">Select color</button>
+                    <div  class="color-picker hidden" ></div>
+                </li>
+            </ul>
+            <ul class="emogies clean-list "></ul>
         </div>
     </section>
     <section class="gallery g-meme hidden">memes gallery</section>
     <footer class="main-footer">footer</footer>
 
+    <script src="js/utils.js"></script>
     <script src="js/service.js"></script>
     <script src="js/controller.js"></script>
    

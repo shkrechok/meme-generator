@@ -10,6 +10,7 @@ function onInit() {
     memService.onInit()
     memeController.onInit()
     galleryController.onInit()
+    generateColorPalette()
 
 }
 
@@ -17,6 +18,20 @@ function onTextEdit(elLineInput) {
     editorController.setLineTxt(elLineInput.value)
     memeController.renderMem()
 }
+
+function onFontFillChange(colorValue) {
+    const meme = memService.getMeme(1)
+    meme.lines[meme.selectedLineIdx].fillColor = colorValue
+    memeController.renderMem()
+    editorController.toggleColorPicker()// Closes the color picker after selecting a color
+}
+
+function onOpenPalete() {
+   editorController.toggleColorPicker()
+    
+}
+
+
 
 galleryController = {
     elGallery: document.querySelector('.g-images'),
@@ -42,11 +57,19 @@ galleryController = {
 
 editorController = {
     elLineInput: null,
+    colorPicker: document.querySelector('.color-picker'),
 
     setLineTxt: function (txt) {
         const meme = memService.getMeme(1)
         meme.lines[meme.selectedLineIdx].txt = txt
+    },
+
+    toggleColorPicker: function () {
+        this.colorPicker.classList.toggle('hidden')
+        console.log('this.colorPicker:', this.colorPicker)
     }
+
+
 }
 
 
@@ -77,9 +100,11 @@ memeController = {
         img.onload = () => {
             this.ctx.drawImage(img, 0, 0, this.elCanvas.width, this.elCanvas.height)
             this.curMeme.lines.forEach(line => {
-                this.ctx.font = `${line.size}px Arial`
-                this.ctx.strokeStyle = line.color
+                this.ctx.font = `${line.size}px ${line.font}`
+                this.ctx.strokeStyle = line.strokeColor
+                this.ctx.fillStyle = line.fillColor
                 this.ctx.strokeText(line.txt, line.pos.x, line.pos.y)
+                this.ctx.fillText(line.txt, line.pos.x, line.pos.y)
             })
         }
     },
