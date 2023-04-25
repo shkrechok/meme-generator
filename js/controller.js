@@ -1,0 +1,8 @@
+'use stridt'
+
+
+function onInit() {
+
+    
+}
+

@@ -1,0 +1,29 @@
+/*base*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+
+
+
+/*helpers*/
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/*body layout*/
+
+body {
+
+    flex-direction: column;
+    width: 100%;
+}
+
