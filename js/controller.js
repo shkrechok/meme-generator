@@ -10,8 +10,7 @@ function onInit() {
     memService.onInit()
     memeController.onInit()
     galleryController.onInit()
-    generateColorPalette()
-
+    editorController.renderColorsPalette()
 }
 
 function onTextEdit(elLineInput) {
@@ -19,16 +18,10 @@ function onTextEdit(elLineInput) {
     memeController.renderMem()
 }
 
-function onFontFillChange(colorValue) {
-    const meme = memService.getMeme(1)
-    meme.lines[meme.selectedLineIdx].fillColor = colorValue
-    memeController.renderMem()
-    editorController.toggleColorPicker()// Closes the color picker after selecting a color
-}
 
 function onOpenPalete() {
-   editorController.toggleColorPicker()
-    
+    editorController.toggleColorPicker()
+
 }
 
 
@@ -41,7 +34,7 @@ galleryController = {
 
     renderGallery: function () {
         const imgs = imageService.getImges()
-        imgs.forEach(img => { 
+        imgs.forEach(img => {
             const strHtmls = `<img src="${img.url}" onclick="galleryController.onSelectImg(${img.id})">`
             this.elGallery.innerHTML += strHtmls
         })
@@ -51,7 +44,7 @@ galleryController = {
         memService.getMeme(1).selectedImgId = id
         memeController.renderMem()
     }
-    
+
 }
 
 
@@ -67,9 +60,24 @@ editorController = {
     toggleColorPicker: function () {
         this.colorPicker.classList.toggle('hidden')
         console.log('this.colorPicker:', this.colorPicker)
+    },
+
+    renderColorsPalette: function () {
+        const colorPicker = document.querySelector('.color-picker')
+        const colors = colorsPalete.getColors()
+
+        colors.forEach(color => {
+            const strHtmls = `<div class="color" style="background-color: ${color}" onclick="editorController.onFontFillChange('${color}')"></div>`
+            colorPicker.innerHTML += strHtmls
+        })
+        
+    },
+    onFontFillChange: function (colorValue) {
+        const meme = memService.getMeme(1)
+        meme.lines[meme.selectedLineIdx].fillColor = colorValue
+        memeController.renderMem()
+        this.toggleColorPicker()// Closes the color picker after selecting a color
     }
-
-
 }
 
 
