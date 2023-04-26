@@ -18,18 +18,30 @@
             <canvas class="canvas"></canvas>
         </div>
         <div class="controls-container grid">
-            <input type="text" class="line-input" placeholder="Enter text here" oninput="onTextEdit(this)" />
-            <ul class="lines-pos clean-list ">
+            <input type="text" class="line-input" placeholder="Enter text here" oninput="memeController.onTextEdit(this)" />
+            <ul class="lines-manage clean-list ">
+                <li class="line-add">
+                    <button onclick="editorController.onAddLine()">Add line</button>
+                </li>
+                <li class="line-delete">
+                    <button onclick="editorController.onDeleteLine()">Delete line</button>
+                </li>
+                <li class="line-up">
+                    <button onclick="editorController.onSwitchLine(1)">Move up</button>
+                </li>
+                <li class="line-down">
+                    <button onclick="editorController.onSwitchLine(-1)">Move down</button>
+                </li>
             </ul>
             <ul class="text-edit clean-list ">
                 <li class="font-size" >
-                    <button  onclick="onFontSizeChange(1)">A+</button>
+                    <button  onclick="editorController.onFontSizeChange(1)">A+</button>
                 </li>
                 <li class="font-size" >
-                    <button  onclick="onFontSizeChange(-1)">A-</button>
+                    <button  onclick="editorController.onFontSizeChange(-1)">A-</button>
                 </li>
                 <li  class="font-fill" >
-                    <button onclick="onOpenPalete()">Select color</button>
+                    <button onclick="editorController.toggleColorPicker()">Select color</button>
                     <div  class="color-picker hidden" ></div>
                 </li>
             </ul>
@@ -40,8 +52,13 @@
     <footer class="main-footer">footer</footer>
 
     <script src="js/utils.js"></script>
-    <script src="js/service.js"></script>
-    <script src="js/controller.js"></script>
+    <script src="js/services/storageService.js"></script>
+    <script src="js/services/imagesService.js"></script>
+    <script src="js/services/memesService.js"></script>
+    <script src="js/controllers/mainController.js"></script>
+    <script src="js/controllers/imagesGalleryController.js"></script>
+    <script src="js/controllers/memesController.js"></script>
+    <script src="js/controllers/memesGenController.js"></script>
    
 </body>
 
