@@ -1,0 +1,13 @@
+/* SETUP */
+@import 'vars.css';
+
+
+/* BASICS */
+@import 'base.css';
+@import 'layout.css';
+@import 'helpers.css';
+
+/* COMPONENTS */
+@import 'components/headerFooter.css';
+@import 'components/generator.css';
+@import 'components/imgGallery.css';

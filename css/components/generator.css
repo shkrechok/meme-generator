@@ -1,0 +1,19 @@
+/* EDITOR */
+
+.color-picker:not(.hidden) {
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
+    grid-gap: 2px;
+    width: 160px;
+    border: 1px #dee2e6;
+    border-radius: 4px;
+    box-shadow: 0 0 0 0.2rem rgba(66, 67, 67, 0.25);
+}
+
+.color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
