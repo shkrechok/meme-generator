@@ -3,12 +3,12 @@
 const memeController = {
     elCanvas: null,
     ctx: null,
-    currMeme: memService.getMeme(1),
+    currMeme: null,
 
     onInit: function () {
         this.elCanvas = document.querySelector('canvas')
         this.ctx = this.elCanvas.getContext('2d')
-        // this.currMeme = memService.getMeme(1)
+        this.currMeme = memService.getMeme(1)
         this.renderMem()
     },
 

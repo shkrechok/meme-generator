@@ -1,10 +1,14 @@
 'use strict'
 
 const editorController = {
-    elLineInput: null,
     colorPicker: document.querySelector('.color-picker'),
+    elLineInput: document.querySelector('.line-input'),
+    
+    onInit() {
+        this.renderColorsPalette()
+        this.renderLinePlaceholder()
+    },
 
-   
     toggleColorPicker: function () {
         this.colorPicker.classList.toggle('hidden')
         console.log('this.colorPicker:', this.colorPicker)
@@ -18,8 +22,13 @@ const editorController = {
             const strHtmls = `<div class="color" style="background-color: ${color}" onclick="editorController.onFontFillChange('${color}')"></div>`
             colorPicker.innerHTML += strHtmls
         })
-        
+
     },
+    
+    renderLinePlaceholder: function () {
+        this.elLineInput.placeholder = memService.getSelectedLine().txt
+    },
+    
     onFontFillChange: function (colorValue) {
         memeController.onFontFillChange(colorValue)
         this.toggleColorPicker()// Closes the color picker after selecting a color
@@ -29,7 +38,16 @@ const editorController = {
         memeController.onFontSizeChange(diff)
     },
 
-    onSwitchLine: function () {
-        memeController.onSwitchLine()
+    onInputFocus: function () {
+        this.elLineInput.value = memService.getSelectedLine().txt
     },
+
+
+    onSwitchLine: function (diff) {
+        memService.switchLine(diff)
+        document.querySelector('.line-input').value = ''
+        this.renderLinePlaceholder()
+    },
+
+    
 }

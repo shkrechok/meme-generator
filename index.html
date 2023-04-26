@@ -18,7 +18,7 @@
             <canvas class="canvas"></canvas>
         </div>
         <div class="controls-container grid">
-            <input type="text" class="line-input" placeholder="Enter text here" oninput="memeController.onTextEdit(this)" />
+            <input type="text" class="line-input" placeholder="Enter text here" onfocus="editorController.onInputFocus()" oninput="memeController.onTextEdit(this)" />
             <ul class="lines-manage clean-list ">
                 <li class="line-add">
                     <button onclick="editorController.onAddLine()">Add line</button>
@@ -27,10 +27,10 @@
                     <button onclick="editorController.onDeleteLine()">Delete line</button>
                 </li>
                 <li class="line-up">
-                    <button onclick="editorController.onSwitchLine(1)">Move up</button>
+                    <button onclick="editorController.onSwitchLine(-1)">Move up</button>
                 </li>
                 <li class="line-down">
-                    <button onclick="editorController.onSwitchLine(-1)">Move down</button>
+                    <button onclick="editorController.onSwitchLine(+1)">Move down</button>
                 </li>
             </ul>
             <ul class="text-edit clean-list ">

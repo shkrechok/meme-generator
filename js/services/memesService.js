@@ -29,11 +29,31 @@ const memService = {
             },
         ]
     }],
-    consoleLog: () => {console.log('currMeme:', this.currMeme)},
+
+    onInit: function () {
+        this.currMeme = this.getMeme(1)
+     },
+    consoleLog: function () {console.log('currMeme:', this.currMeme)},
     getMeme: function (id) {
         this.currMeme = this.memes.find(meme => meme.id === id)
         return this.currMeme
     },
+    
+    getSelectedLineidx: function () {
+        return this.currMeme.selectedLineIdx
+    },
+    getSelectedLine: function () {
+        return this.currMeme.lines[this.currMeme.selectedLineIdx]
+    },
+    switchLine: function (diff) {
+        const meme = this.currMeme
+        meme.selectedLineIdx += diff
+        if (meme.selectedLineIdx < 0) meme.selectedLineIdx = 0
+        else if (meme.selectedLineIdx >= meme.lines.length) meme.selectedLineIdx = meme.lines.length - 1
+        this.currMeme.selectedLineIdx = meme.selectedLineIdx
+        this.consoleLog()
+    },
+        
     setLineTxt: function (txt) {
         const meme = this.currMeme
         meme.lines[meme.selectedLineIdx].txt = txt
@@ -47,7 +67,5 @@ const memService = {
         const meme = this.currMeme
         meme.lines[meme.selectedLineIdx].size += diff
     },
-    onInit: function () {
-
-    }
+    
 }
