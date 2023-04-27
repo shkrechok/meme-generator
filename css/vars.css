@@ -4,4 +4,8 @@
 	--s: 600px;
     --layout-padding: 3.1rem;
     --main-content-width: 90%;
+    --main-header-height: 4.1rem;
+    --main-footer-height: 12.93rem;
+    --main-content-block-padding: 1.55rem;
+    --editor-buttons-gap:1.125rem;
 }

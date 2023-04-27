@@ -3,6 +3,10 @@
     margin: 0;
   }
 
+ html {
+  font-family: montserrat, sans-serif;
+ } 
+
 
 img {
     width: 100%;
@@ -11,4 +15,8 @@ img {
 a {
     text-decoration: none;
     color: inherit;
-  }  
+  }
+  
+  .main-item {
+    background-color: #e3e3e3;
+  }

@@ -37,7 +37,9 @@ const memeController = {
     },
     
     renderMem: function () {
-
+        const elCanvasContainer = document.querySelector('.canvas-container')
+        this.elCanvas.width = elCanvasContainer.offsetWidth
+        this.elCanvas.height = elCanvasContainer.offsetHeight
         const img = this.loadImg(this.currMeme.selectedImgId)  // Load the image
 
         // When the image ready draw it on the canvas

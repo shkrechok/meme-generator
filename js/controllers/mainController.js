@@ -12,6 +12,11 @@ function onInit() {
 
 function onNavTo(elNavTo) {
     if (elNavTo.classList.contains('active')) return
+    onSwitchNav(elNavTo)
+    
+}
+
+function onSwitchNav(elNavTo) {
     const elNavToData = elNavTo.dataset.section
     const elNavItems = document.querySelectorAll('.main-nav-item')
     const elMainContentItems = document.querySelectorAll('.main-item')
@@ -24,11 +29,8 @@ function onNavTo(elNavTo) {
     const classToCheck = elNavToData
     const elMainContentToShow = document.querySelector(`.${classToCheck}`)
     elMainContentToShow.classList.remove('hidden')
+
 }
-
-
-
-
 
 
 

@@ -16,6 +16,8 @@ const galleryController = {
 
     onSelectImg: function (id) {
         memService.getMeme(1).selectedImgId = id
+        const elNavTo = document.querySelector('.main-nav-item.editor-btn')
+        onSwitchNav(elNavTo)
         memeController.renderMem()
     }
 
