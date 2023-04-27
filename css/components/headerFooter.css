@@ -17,4 +17,17 @@
     background-color: #ff7f00;
     width: 100%;
     height: var(--main-footer-height);
+    row-gap: 1rem;
+    justify-items: center;
+}
+
+.main-footer .logo {
+    align-self: end;
+}
+
+.main-footer small {
+    align-self: start;
+    color: #ffffff;
+    font-size: 1.18rem;
+    font-weight: 100;
 }
