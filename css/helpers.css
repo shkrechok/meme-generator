@@ -16,3 +16,7 @@
     padding: 0;
     margin: 0;
   }
+
+  .active {
+    background-color: #c91a1a;
+  }
