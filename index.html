@@ -12,13 +12,14 @@
 
 <body class="main-layout grid" onload="onInit()">
     <header class="main-header full grid main-layout">
-        <section class="header-middle flex" >   
-        <div class="logo">Meme-gen</div>
+        <section class="header-middle flex">
+            <div class="logo">Meme-gen</div>
             <nav class="main-nav-container">
                 <ul class="main-nav flex clean-list">
                     <li><button data-section="g-images" class="main-nav-item" onclick="onNavTo(this)">Gallery
                             |</button></li>
-                    <li><button data-section="editor" class="main-nav-item editor-btn active" onclick="onNavTo(this)">Editor
+                    <li><button data-section="editor" class="main-nav-item editor-btn active"
+                            onclick="onNavTo(this)">Editor
                             |</button>
                     </li>
                     <li><button data-section="g-memes" class="main-nav-item" onclick="onNavTo(this)">Memes</button>
@@ -33,37 +34,41 @@
             <!-- <canvas class="canvas"></canvas> -->
         </div>
         <div class="controls-container grid">
-            <nav class="line-nav flex" >
-            <input type="text" class="line-input" placeholder="Enter text here"
-                onfocus="editorController.onInputFocus()" oninput="memeController.onTextEdit(this)" />
-            <ul class="lines-manage clean-list flex ">
-                <li class="line-add">
-                    <button onclick="editorController.onAddLine()"><img src="icons/addLine.png" alt=""></button>
-                </li>
-                <li class="line-delete">
-                    <button onclick="editorController.onDeleteLine()"><img src="icons/delLine.png" alt=""></button>
-                </li>
-                <li class="line-up">
-                    <button onclick="editorController.onSwitchLine(1)"><img src="icons/switchLine.png" alt=""></button>
-                </li>
-                <!-- <li class="line-down">
+            <nav class="line-nav flex">
+                <input type="text" class="line-input" placeholder="Enter text here"
+                    onfocus="editorController.onInputFocus()" oninput="memeController.onTextEdit(this)" />
+                <ul class="lines-manage clean-list flex ">
+                    <li class="line-add">
+                        <button onclick="editorController.onAddLine()"><img src="icons/addLine.png" alt=""></button>
+                    </li>
+                    <li class="line-delete">
+                        <button onclick="editorController.onDeleteLine()"><img src="icons/delLine.png" alt=""></button>
+                    </li>
+                    <li class="line-up">
+                        <button onclick="editorController.onSwitchLine(1)"><img src="icons/switchLine.png"
+                                alt=""></button>
+                    </li>
+                    <!-- <li class="line-down">
                     <button onclick="editorController.onSwitchLine(+1)">Next Line</button>
                 </li> -->
-            </ul>
-        </nav>
+                </ul>
+            </nav>
             <ul class="text-edit clean-list flex">
                 <li class="font-size">
                     <button onclick="editorController.onFontSizeChange(1)"><img src="icons/fontUp.png" alt=""></button>
                 </li>
                 <li class="font-size">
-                    <button onclick="editorController.onFontSizeChange(-1)"><img src="icons/fontDown.png" alt=""></button>
+                    <button onclick="editorController.onFontSizeChange(-1)"><img src="icons/fontDown.png"
+                            alt=""></button>
                 </li>
                 <li class="font-fill">
-                    <button onclick="editorController.toggleColorPicker()"><img src="icons/fillColor.png" alt=""></button>
+                    <button onclick="editorController.toggleColorPicker()"><img src="icons/fillColor.png"
+                            alt=""></button>
                     <div class="color-picker hidden"></div>
                 </li>
             </ul>
             <ul class="emogies clean-list "></ul>
+            <a href="#" class="download-link" onclick="editorController.onDownloadMeme(this)" download="">Download</a>
         </div>
     </section>
     <section data-class="g-memes" class="main-item g-memes gallery hidden">memes gallery</section>

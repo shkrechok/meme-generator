@@ -49,5 +49,22 @@ const editorController = {
         this.renderLinePlaceholder()
     },
 
-    
+    onAddLine: function () {
+        memService.addLine()
+        this.renderLinePlaceholder()
+        memeController.renderMem()
+    },
+
+    onDeleteLine: function () {
+        memService.deleteLine()
+        this.renderLinePlaceholder()
+        memeController.renderMem()
+    },
+
+    onDownloadMeme: function (elLink) {
+        const data = memeController.elCanvas.toDataURL()
+        elLink.href = data
+        elLink.download = 'my-meme.jpg'
+        elLink.click()
+    },
 }

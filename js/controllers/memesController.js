@@ -51,7 +51,7 @@ const memeController = {
         const sideSize = canvasContainerRatio < 1 ? canvasService.getCanvasContainerSize().height : canvasService.getCanvasContainerSize().width
         this.elCanvas.width = sideSize
         this.elCanvas.height = sideSize * imgRatio
-        
+
 
         console.log(`Canvas size set to ${this.elCanvas.width}W x ${this.elCanvas.height}H`)
 
@@ -66,7 +66,7 @@ const memeController = {
                 this.ctx.fillStyle = line.fillColor
                 console.log('line length:', this.ctx.measureText(line.txt).width)
                 line.pos.x = (this.elCanvas.width / 2) - (this.ctx.measureText(line.txt).width / 2)
-                line.pos.y = (line.id === 1) ? 50 : this.elCanvas.height - 50
+                line.pos.y = (line.id === 1) ? 50 : this.elCanvas.height - 50 - (line.id-2) * 50
                 this.ctx.strokeText(line.txt, line.pos.x, line.pos.y)
                 this.ctx.fillText(line.txt, line.pos.x, line.pos.y)
                 

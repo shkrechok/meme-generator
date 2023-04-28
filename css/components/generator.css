@@ -37,8 +37,24 @@
     width: 3em;
     height: 3em;
     border-radius: 0.6em;
+    border-style: none;
     background-color: #ffffff;
 }
+
+.controls-container .download-link {
+    font-size: inherit;
+    width: 6.5em;
+    height: 3em;
+    justify-self: end;
+    border-radius: 0.6em;
+    background-color: #ff7f00;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    color: #ffffff;
+}
+   
+
 
 .lines-manage button img {
     width: 65%;

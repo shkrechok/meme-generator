@@ -69,6 +69,28 @@ const memService = {
         this.currMeme.selectedLineIdx = meme.selectedLineIdx
         this.consoleLog()
     },
+    addLine: function () {
+        const meme = this.currMeme
+        meme.lines.push({
+            id: meme.lines.length + 1,
+            txt: 'New Line',
+            font: 'Impact',
+            size: 20,
+            align: 'left',
+            strokeColor: 'black',
+            fillColor: 'white',
+            pos: { x: 35, y: 35 },
+        }),
+            meme.selectedLineIdx = meme.lines.length - 1
+        this.consoleLog()
+    },
+
+    deleteLine: function () {
+        const meme = this.currMeme
+        meme.lines.splice(meme.selectedLineIdx, 1)
+        meme.selectedLineIdx = 0
+        this.consoleLog()
+    },
 
     setLineTxt: function (txt) {
         const meme = this.currMeme
