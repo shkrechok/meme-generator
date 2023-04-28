@@ -40,9 +40,30 @@
     background-color: #ffffff;
 }
 
+.lines-manage button img {
+    width: 65%;
+    height: 65%;
+}
+
+.text-edit .font-size button img {
+    width: 64%;
+    height: 45%;
+}
+
+.text-edit .font-fill button img {
+    width: 65%;
+    height: 51%;
+}
+
 .editor .canvas-container {
     width: 100%;
     height: 100%;
+}
+
+.canvas-container {
+    display: grid;
+    align-content: start;
+    justify-content: center;
 }
 
 

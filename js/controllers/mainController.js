@@ -8,7 +8,11 @@ function onInit() {
     editorController.onInit()
     memeController.onInit()
     galleryController.onInit()
+    window.addEventListener('resize', () => {
+        memeController.onInit()
+      })
 }
+
 
 function onNavTo(elNavTo) {
     if (elNavTo.classList.contains('active')) return

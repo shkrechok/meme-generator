@@ -12,9 +12,11 @@ body {
     var(--main-header-height)
     auto
     var(--main-footer-height);
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
+
+
 
 body::before,
 body::after{
@@ -61,6 +63,8 @@ body::after{
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
     width: 100%;
+    align-items: center;
+    justify-items: center;
 }
 
 .editor {

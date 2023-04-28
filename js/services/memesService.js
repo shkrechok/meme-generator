@@ -1,4 +1,20 @@
 'use strict'
+const canvasService = {
+    canvasSize: { width: 500, height: 500 },
+    elCanvasContainer: document.querySelector('.canvas-container'),
+
+    // getCanvasContainerSize: function () {
+    //     this.canvasSize.width = this.elCanvasContainer.offsetWidth
+    //     this.canvasSize.height = this.elCanvasContainer.offsetHeight
+    //     console.log(`Canvas size set to ${this.canvasSize.width}W x ${this.canvasSize.height}H`)
+    //     return this.canvasSize
+    // },
+
+    getCanvasContainerSize: function () {
+        return { width: this.elCanvasContainer.offsetWidth, height: this.elCanvasContainer.offsetHeight }
+    }
+}
+
 
 const memService = {
     currMeme: null,
@@ -22,7 +38,7 @@ const memService = {
                 txt: 'I never eat Falafel',
                 font: 'Impact',
                 size: 20,
-                align: 'left',
+                align: 'middle',
                 strokeColor: 'black',
                 fillColor: 'white',
                 pos: { x: 60, y: 60 },
@@ -30,15 +46,16 @@ const memService = {
         ]
     }],
 
+
     onInit: function () {
         this.currMeme = this.getMeme(1)
-     },
-    consoleLog: function () {console.log('currMeme:', this.currMeme)},
+    },
+    consoleLog: function () { console.log('currMeme:', this.currMeme) },
     getMeme: function (id) {
         this.currMeme = this.memes.find(meme => meme.id === id)
         return this.currMeme
     },
-    
+
     getSelectedLineidx: function () {
         return this.currMeme.selectedLineIdx
     },
@@ -48,12 +65,11 @@ const memService = {
     switchLine: function (diff) {
         const meme = this.currMeme
         meme.selectedLineIdx += diff
-        if (meme.selectedLineIdx < 0) meme.selectedLineIdx = 0
-        else if (meme.selectedLineIdx >= meme.lines.length) meme.selectedLineIdx = meme.lines.length - 1
+        if (meme.selectedLineIdx >= meme.lines.length) meme.selectedLineIdx = 0
         this.currMeme.selectedLineIdx = meme.selectedLineIdx
         this.consoleLog()
     },
-        
+
     setLineTxt: function (txt) {
         const meme = this.currMeme
         meme.lines[meme.selectedLineIdx].txt = txt
@@ -67,5 +83,6 @@ const memService = {
         const meme = this.currMeme
         meme.lines[meme.selectedLineIdx].size += diff
     },
+
     
 }

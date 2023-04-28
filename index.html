@@ -30,7 +30,7 @@
     <section data-class="g-images" class="main-item g-images gallery grid hidden"></section>
     <section data-class="editor" class="main-item editor grid">
         <div class="canvas-container">
-            <canvas class="canvas"></canvas>
+            <!-- <canvas class="canvas"></canvas> -->
         </div>
         <div class="controls-container grid">
             <nav class="line-nav flex" >
@@ -38,28 +38,28 @@
                 onfocus="editorController.onInputFocus()" oninput="memeController.onTextEdit(this)" />
             <ul class="lines-manage clean-list flex ">
                 <li class="line-add">
-                    <button onclick="editorController.onAddLine()">Add line</button>
+                    <button onclick="editorController.onAddLine()"><img src="icons/addLine.png" alt=""></button>
                 </li>
                 <li class="line-delete">
-                    <button onclick="editorController.onDeleteLine()">Delete line</button>
+                    <button onclick="editorController.onDeleteLine()"><img src="icons/delLine.png" alt=""></button>
                 </li>
                 <li class="line-up">
-                    <button onclick="editorController.onSwitchLine(-1)">Prev Line</button>
+                    <button onclick="editorController.onSwitchLine(1)"><img src="icons/switchLine.png" alt=""></button>
                 </li>
-                <li class="line-down">
+                <!-- <li class="line-down">
                     <button onclick="editorController.onSwitchLine(+1)">Next Line</button>
-                </li>
+                </li> -->
             </ul>
         </nav>
             <ul class="text-edit clean-list flex">
                 <li class="font-size">
-                    <button onclick="editorController.onFontSizeChange(1)">A+</button>
+                    <button onclick="editorController.onFontSizeChange(1)"><img src="icons/fontUp.png" alt=""></button>
                 </li>
                 <li class="font-size">
-                    <button onclick="editorController.onFontSizeChange(-1)">A-</button>
+                    <button onclick="editorController.onFontSizeChange(-1)"><img src="icons/fontDown.png" alt=""></button>
                 </li>
                 <li class="font-fill">
-                    <button onclick="editorController.toggleColorPicker()">Select color</button>
+                    <button onclick="editorController.toggleColorPicker()"><img src="icons/fillColor.png" alt=""></button>
                     <div class="color-picker hidden"></div>
                 </li>
             </ul>
