@@ -12,7 +12,8 @@ const memeController = {
         this.elCanvasContainer.innerHTML = `<canvas class="canvas"></canvas>`
         this.elCanvas = document.querySelector('canvas')
         this.ctx = this.elCanvas.getContext('2d')
-        this.currMeme = memService.getMeme()  
+        this.currMeme = memService.getMeme()
+        console.log('this.currMeme:', this.currMeme)
         this.renderMem()
     },
 
@@ -44,20 +45,23 @@ const memeController = {
 
     renderMem: function () {
         const img = this.loadImg(this.currMeme.selectedImgId)  // Load the image
-        const imgWidth = img.naturalWidth
-        const imgHeight = img.naturalHeight
-        console.log(`Image size is ${imgWidth}W x ${imgHeight}H`)
-        const imgRatio = imgHeight / imgWidth
-        const canvasContainerRatio = canvasService.getCanvasContainerSize().height / canvasService.getCanvasContainerSize().width
-        const sideSize = canvasContainerRatio < 1 ? canvasService.getCanvasContainerSize().height : canvasService.getCanvasContainerSize().width
-        this.elCanvas.width = sideSize
-        this.elCanvas.height = sideSize * imgRatio
-
-
-        console.log(`Canvas size set to ${this.elCanvas.width}W x ${this.elCanvas.height}H`)
 
         // When the image ready draw it on the canvas
         img.onload = () => {
+            const imgWidth = img.naturalWidth
+            const imgHeight = img.naturalHeight
+            console.log(`Image size is ${imgWidth}W x ${imgHeight}H`)
+            const imgRatio = imgHeight / imgWidth
+            const canvasContainerRatio = canvasService.getCanvasContainerSize().height / canvasService.getCanvasContainerSize().width
+            const sideSize = canvasContainerRatio < 1 ? canvasService.getCanvasContainerSize().height : canvasService.getCanvasContainerSize().width
+            this.elCanvas.width = sideSize
+            this.elCanvas.height = sideSize * imgRatio
+    
+    
+            console.log(`Canvas size set to ${this.elCanvas.width}W x ${this.elCanvas.height}H`)
+
+            
+
             this.ctx.drawImage(img, 0, 0, this.elCanvas.width, this.elCanvas.height)
             this.currMeme.lines.forEach(line => {
                 this.ctx.textAlign = line.align
@@ -89,12 +93,16 @@ const memesGalleryController = {
     elGallery: null,
     
     onInit: function () {
+        memService.onInit()
+
         this.elGallery = document.querySelector('.g-memes')
         this.renderGallery()
     },
 
     renderGallery: function () {
         const memes = memService.getMemes()
+        if (!memes) return
+        this.elGallery.innerHTML = ''
         memes.forEach(meme => {
             const strHtmls = `<img src="${meme.dataUrl}" onclick="memesGalleryController.onSelectMeme(${meme.id})">`
             this.elGallery.innerHTML += strHtmls

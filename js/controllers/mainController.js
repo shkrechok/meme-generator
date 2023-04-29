@@ -1,13 +1,12 @@
 'use strict'
 
 
-
 function onInit() {
     imageService.onInit()
     memService.onInit()
     editorController.onInit()
-    memeController.onInit()
     galleryController.onInit()
+    memeController.onInit()
     memesGalleryController.onInit()
     window.addEventListener('resize', () => {
         memeController.onInit()
@@ -34,6 +33,10 @@ function onSwitchNav(elNavTo) {
     const classToCheck = elNavToData
     const elMainContentToShow = document.querySelector(`.${classToCheck}`)
     elMainContentToShow.classList.remove('hidden')
+
+    if (elNavToData === 'g-memes') {
+        memesGalleryController.onInit()
+    }
 
 }
 
