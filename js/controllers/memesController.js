@@ -57,10 +57,7 @@ const memeController = {
             this.elCanvas.width = sideSize
             this.elCanvas.height = sideSize * imgRatio
     
-    
             console.log(`Canvas size set to ${this.elCanvas.width}W x ${this.elCanvas.height}H`)
-
-            
 
             this.ctx.drawImage(img, 0, 0, this.elCanvas.width, this.elCanvas.height)
             this.currMeme.lines.forEach(line => {

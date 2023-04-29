@@ -59,7 +59,7 @@ const memService = {
     },
     onInit: function () {
         this.loadMemesFromStorage()
-        this.currMeme = this.difaultMeme
+        this.setToDefault()
     },
     consoleLog: function () { console.log('currMeme:', this.currMeme) },
     setCurrMeme: function (id) {
@@ -68,7 +68,7 @@ const memService = {
     },
 
     setToDefault: function () {
-        this.currMeme = this.difaultMeme
+        this.currMeme = JSON.parse(JSON.stringify(this.difaultMeme))
     },
     
 
@@ -121,7 +121,7 @@ const memService = {
     },
 
     saveMeme: function (dataUrl) {
-        this.currMeme = JSON.parse(JSON.stringify(this.currMeme)) //  creating a new object
+        this.currMeme = JSON.parse(JSON.stringify(this.currMeme)) //  creating a new object, didn`t work with other dictructuring syntax
         this.currMeme.id = this.memes.length + 1
         this.currMeme.dataUrl = dataUrl
         this.memes.push(this.currMeme)
