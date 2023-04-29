@@ -14,3 +14,4 @@
 @import 'components/headerFooter.css';
 @import 'components/generator.css';
 @import 'components/imgGallery.css';
+@import 'setup/mq.css';

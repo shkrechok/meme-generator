@@ -13,6 +13,12 @@
     font-size: 1.18rem;
 }
 
+
+
+.main-nav button.active {
+    color: #000000;
+}
+
 .main-footer{
     background-color: #ff7f00;
     width: 100%;

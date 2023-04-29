@@ -3,13 +3,6 @@ const canvasService = {
     canvasSize: { width: 500, height: 500 },
     elCanvasContainer: document.querySelector('.canvas-container'),
 
-    // getCanvasContainerSize: function () {
-    //     this.canvasSize.width = this.elCanvasContainer.offsetWidth
-    //     this.canvasSize.height = this.elCanvasContainer.offsetHeight
-    //     console.log(`Canvas size set to ${this.canvasSize.width}W x ${this.canvasSize.height}H`)
-    //     return this.canvasSize
-    // },
-
     getCanvasContainerSize: function () {
         return { width: this.elCanvasContainer.offsetWidth, height: this.elCanvasContainer.offsetHeight }
     }
@@ -18,7 +11,7 @@ const canvasService = {
 
 const memService = {
     currMeme: null,
-    memes: [{
+    difaultMeme: {
         id: 1,
         selectedImgId: 1,
         selectedLineIdx: 0,
@@ -44,15 +37,38 @@ const memService = {
                 pos: { x: 60, y: 60 },
             },
         ]
-    }],
+    },
+    
+    memes: [],
 
-
+    getMemes: function () {
+        return this.memes
+    },
+    
+    loadMemesFromStorage: function () {
+        this.memes = localStorageService.loadFromStorage('memes')
+        if (!this.memes) this.memes = [this.difaultMeme]
+        // adding the default meme to the beginning of the array so that it be the one to change
+        // thus keeping the default meme intact
+        this.memes.unshift(this.difaultMeme)
+        console.log('this.memes:', this.memes)
+        
+    },
     onInit: function () {
-        this.currMeme = this.getMeme(1)
+        this.loadMemesFromStorage()
+        this.currMeme = this.memes[0]
     },
     consoleLog: function () { console.log('currMeme:', this.currMeme) },
-    getMeme: function (id) {
+    setCurrMeme: function (id) {
         this.currMeme = this.memes.find(meme => meme.id === id)
+        this.consoleLog()
+    },
+
+    setToDefault: function () {
+        this.memes[0] = this.difaultMeme
+        this.currMeme = this.memes[0]
+    },
+    getMeme: function () {
         return this.currMeme
     },
 
@@ -104,6 +120,19 @@ const memService = {
     setLineFontSize: function (diff) {
         const meme = this.currMeme
         meme.lines[meme.selectedLineIdx].size += diff
+    },
+
+    saveMeme: function (dataUrl) {
+        this.currMeme.id = this.memes.length + 1
+        this.currMeme.dataUrl = dataUrl
+        this.memes.push(this.currMeme)
+        // removing the default meme from the beginning of the array so that it won't be saved
+        // but it has to remain in the original array so that it can be used as a template again
+        const memesToSave = this.memes.slice()
+        memesToSave.splice(0, 1)
+        localStorageService.saveToStorage('memes', memesToSave)
+        this.loadMemesFromStorage()
+          
     },
 
     

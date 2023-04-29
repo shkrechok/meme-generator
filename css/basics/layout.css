@@ -52,26 +52,31 @@ body::after{
     height: 100%;
 } 
 
+/* MAIN CONTENT */
 .main-item {
     padding-block-start: var(--main-content-block-padding);
     padding-block-end: var(--main-content-block-padding);
+    align-content: center;
 }
 
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+    align-content: start;
+    grid-gap: 1.25rem;
     width: 100%;
     align-items: center;
     justify-items: center;
 }
 
+
+
 .editor {
-    grid-template-columns: repeat(2, 1fr);
-    gap:calc(var(--main-content-width)*0.08);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap:calc(var(--main-content-width)*0.02);
     align-items: center;
     justify-items: center;
 }
-
 

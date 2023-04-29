@@ -5,25 +5,26 @@ const memeController = {
     elCanvasContainer: document.querySelector('.canvas-container'),
     ctx: null,
     currMeme: null,
+    linesGap: 50,
 
     onInit: function () {
         this.elCanvasContainer.innerHTML = ''
         this.elCanvasContainer.innerHTML = `<canvas class="canvas"></canvas>`
         this.elCanvas = document.querySelector('canvas')
         this.ctx = this.elCanvas.getContext('2d')
-        this.currMeme = memService.getMeme(1)
+        this.currMeme = memService.getMeme()  
         this.renderMem()
     },
 
     loadImg: function (id) {
-        const image = imageService.getImg(id)
+        const image = imageService.getImg(id) 
         const elImg = new Image() // Create a new html img element
         elImg.src = image.url // Set the image source
         console.log('elImg:', elImg)
 
         return elImg;
     },
-    
+
     onTextEdit: function (elLineInput) {
         memService.setLineTxt(elLineInput.value)
         this.renderMem()
@@ -39,7 +40,7 @@ const memeController = {
         this.renderMem()
     },
 
-    
+
 
     renderMem: function () {
         const img = this.loadImg(this.currMeme.selectedImgId)  // Load the image
@@ -61,18 +62,52 @@ const memeController = {
             this.currMeme.lines.forEach(line => {
                 this.ctx.textAlign = line.align
                 this.ctx.font = `${line.size}px ${line.font}`
-                // this.ctx.font = `${line.size*5}% ${line.font}`
                 this.ctx.strokeStyle = line.strokeColor
                 this.ctx.fillStyle = line.fillColor
                 console.log('line length:', this.ctx.measureText(line.txt).width)
+                //first line appears at the top, second bottom, the rest under the first and down
                 line.pos.x = (this.elCanvas.width / 2) - (this.ctx.measureText(line.txt).width / 2)
-                line.pos.y = (line.id === 1) ? 50 : this.elCanvas.height - 50 - (line.id-2) * 50
+                
+                if (line.id === 1) {
+                    line.pos.y = this.linesGap
+                } else if (line.id === 2) {
+                    line.pos.y = this.elCanvas.height - this.linesGap
+                } else {
+                    line.pos.y = this.linesGap + (line.id - 2) * this.linesGap
+                }
                 this.ctx.strokeText(line.txt, line.pos.x, line.pos.y)
                 this.ctx.fillText(line.txt, line.pos.x, line.pos.y)
-                
+
             })
         }
-          
+
     },
 
+}
+
+const memesGalleryController = {
+    elGallery: null,
+    
+    onInit: function () {
+        this.elGallery = document.querySelector('.g-memes')
+        this.renderGallery()
+    },
+
+    renderGallery: function () {
+        const memes = memService.getMemes()
+        memes.forEach(meme => {
+            const strHtmls = `<img src="${meme.dataUrl}" onclick="memesGalleryController.onSelectMeme(${meme.id})">`
+            this.elGallery.innerHTML += strHtmls
+        })
+    },
+
+    onSelectMeme: function (id) {
+        memService.setCurrMeme(id)
+        const elNavTo = document.querySelector('.main-nav-item.editor-btn')
+        onSwitchNav(elNavTo)
+        memeController.onInit()
+    },
+
+    
+    
 }

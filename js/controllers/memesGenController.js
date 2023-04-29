@@ -67,4 +67,9 @@ const editorController = {
         elLink.download = 'my-meme.jpg'
         elLink.click()
     },
+
+    onSaveMeme: function () {
+        const dataUrl = memeController.elCanvas.toDataURL('image/png')
+        memService.saveMeme(dataUrl)
+    },
 }

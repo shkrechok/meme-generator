@@ -6,6 +6,7 @@
 
  html {
   font-family: montserrat, sans-serif;
+  /* font-size: 16px; passed to mq */
   height: 100%;
  } 
 
