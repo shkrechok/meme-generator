@@ -14,7 +14,7 @@ const memService = {
     difaultMeme: {
         id: 1,
         selectedImgId: 1,
-        selectedLineIdx: 0,
+        selectedLineId: 1,
         lines: [
             {
                 id: 1,
@@ -64,7 +64,7 @@ const memService = {
     consoleLog: function () { console.log('currMeme:', this.currMeme) },
     setCurrMeme: function (id) {
         this.currMeme = this.memes.find(meme => meme.id === id)
-        this.consoleLog()
+        // this.consoleLog()
     },
 
     setToDefault: function () {
@@ -72,22 +72,24 @@ const memService = {
     },
     
 
-    getSelectedLineidx: function () {
-        return this.currMeme.selectedLineIdx
+    getSelectedLineid: function () {
+        return this.currMeme.selectedLineId
     },
     getSelectedLine: function () {
-        return this.currMeme.lines[this.currMeme.selectedLineIdx]
+        return this.currMeme.lines.find(line => line.id === this.currMeme.selectedLineId)
     },
     switchLine: function (diff) {
         const meme = this.currMeme
-        meme.selectedLineIdx += diff
-        if (meme.selectedLineIdx >= meme.lines.length) meme.selectedLineIdx = 0
-        this.currMeme.selectedLineIdx = meme.selectedLineIdx
+        let selectedLineIdx = meme.lines.indexOf(this.getSelectedLine())
+        selectedLineIdx += diff
+        if (selectedLineIdx >= meme.lines.length) selectedLineIdx = 0
+        this.currMeme.selectedLineId = this.currMeme.lines[selectedLineIdx].id
     },
     addLine: function () {
         const meme = this.currMeme
-        meme.lines.push({
-            id: meme.lines.length + 1,
+        const newLineId = Math.max(...meme.lines.map(d=>d.id)) + 1
+         meme.lines.push({
+            id: newLineId,
             txt: 'New Line',
             font: 'Impact',
             size: 20,
@@ -96,34 +98,32 @@ const memService = {
             fillColor: 'white',
             pos: { x: 35, y: 35 },
         }),
-            meme.selectedLineIdx = meme.lines.length - 1
-        this.consoleLog()
+            meme.selectedLineId = newLineId
+        // this.consoleLog()
     },
 
     deleteLine: function () {
         const meme = this.currMeme
-        meme.lines.splice(meme.selectedLineIdx, 1)
-        meme.selectedLineIdx = 0
+        const selectedLineIdx = meme.lines.indexOf(this.getSelectedLine())
+        meme.lines.splice(selectedLineIdx, 1) 
+
+        meme.selectedLineId = (meme.lines.length === 0)? undefined : meme.lines[0].id
     },
 
     setLineTxt: function (txt) {
-        const meme = this.currMeme
-        meme.lines[meme.selectedLineIdx].txt = txt
+        this.getSelectedLine().txt = txt
     },
 
     setLineFillColor: function (colorValue) {
-        const meme = this.currMeme
-        meme.lines[meme.selectedLineIdx].fillColor = colorValue
+        this.getSelectedLine().fillColor = colorValue
     },
 
     setLineStrokeColor: function (colorValue) {
-        const meme = this.currMeme
-        meme.lines[meme.selectedLineIdx].strokeColor = colorValue
+        this.getSelectedLine().strokeColor = colorValue
     },
-    
+
     setLineFontSize: function (diff) {
-        const meme = this.currMeme
-        meme.lines[meme.selectedLineIdx].size += diff
+        this.getSelectedLine().size += diff
     },
 
     saveMeme: function (dataUrl) {

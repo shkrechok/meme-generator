@@ -56,6 +56,7 @@ const editorController = {
 
     onInputFocus: function () {
         this.elLineInput.value = memService.getSelectedLine().txt
+        // memeController.renderMem()
     },
 
 
@@ -63,6 +64,7 @@ const editorController = {
         memService.switchLine(diff)
         document.querySelector('.line-input').value = ''
         this.renderLinePlaceholder()
+        memeController.renderMem()
     },
 
     onAddLine: function () {

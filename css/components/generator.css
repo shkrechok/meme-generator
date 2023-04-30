@@ -45,18 +45,19 @@
 }
 
 .save-download-btns {
-    justify-content: end;
+    justify-content: center;
     gap: 1em;
 }
 
 .controls-container button.save-to-local-btn {
     background-color: #ff7f00;
     color: #ffffff;
+    width: 7em;
 }
 
 .controls-container .download-link {
     font-size: inherit;
-    width: 6.5em;
+    width: 7em;
     height: 3em;
     justify-self: end;
     border-radius: 0.6em;
