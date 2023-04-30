@@ -11,15 +11,16 @@
 </head>
 
 <body class="main-layout grid" onload="onInit()">
+
     <header class="main-header full grid main-layout">
         <section class="header-middle flex">
             <div class="logo">Meme-gen</div>
             <nav class="main-nav-container">
                 <ul class="main-nav flex clean-list">
-                    <li><button data-section="g-images" class="main-nav-item" onclick="onNavTo(this)">Gallery|</button>
+                    <li><button data-section="g-images" class="main-nav-item" onclick="onNavTo(this)">Gallery</button>
                     </li>
                     <li><button data-section="editor" class="main-nav-item editor-btn active"
-                            onclick="onNavTo(this)">Editor|</button>
+                            onclick="onNavTo(this)">Editor</button>
                     </li>
                     <li><button data-section="g-memes" class="main-nav-item" onclick="onNavTo(this)">Memes</button>
                     </li>
@@ -27,7 +28,9 @@
             </nav>
         </section>
     </header>
+
     <section data-class="g-images" class="main-item g-images gallery grid hidden"></section>
+
     <section data-class="editor" class="main-item editor grid">
         <div class="canvas-container">
             <!-- <canvas class="canvas"></canvas> -->
@@ -55,28 +58,32 @@
                     <button onclick="editorController.onFontSizeChange(1)"><img src="icons/fontUp.png" alt=""></button>
                 </li>
                 <li class="font-size">
-                    <button onclick="editorController.onFontSizeChange(-1)"><img src="icons/fontDown.png"
-                            alt=""></button>
+                    <button onclick="editorController.onFontSizeChange(-1)"><img src="icons/fontDown.png" alt=""></button>
                 </li>
                 <li class="font-fill">
-                    <button onclick="editorController.toggleColorPicker()"><img src="icons/fillColor.png"
-                            alt=""></button>
+                    <button title="text fill color" class="fill" onclick="editorController.toggleColorPicker('fill')"><img src="icons/fillColor.png" alt=""></button>
+                    <div class="color-picker hidden"></div>
+                </li>
+                <li class="font-stroke">
+                    <button title="text stroke color" class="stroke" onclick="editorController.toggleColorPicker('stroke')"><img src="icons/stroke.png" alt=""></button>
                     <div class="color-picker hidden"></div>
                 </li>
             </ul>
             <!-- <ul class="emogies clean-list "></ul> -->
             <section class="save-download-btns flex">
                 <button class="save-to-local-btn" onclick="editorController.onSaveMeme()">Save</button>
-                <a href="#" class="download-link" onclick="editorController.onDownloadMeme(this)"
-                    download="">Download</a>
+                <a href="#" class="download-link" onclick="editorController.onDownloadMeme(this)" download="">Download</a>
             </section>
         </div>
     </section>
+
     <section data-class="g-memes" class="main-item g-memes gallery hidden"></section>
+
     <footer class="main-footer grid main-layout full">
         <div class="logo">Meme-gen</div>
         <small class="cofferight">Cofferights Marina Milman 2023</small>
     </footer>
+
     <script src="js/utils.js"></script>
     <script src="js/services/storageService.js"></script>
     <script src="js/services/imagesService.js"></script>

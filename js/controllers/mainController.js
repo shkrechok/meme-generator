@@ -7,7 +7,6 @@ function onInit() {
     editorController.onInit()
     galleryController.onInit()
     memeController.onInit()
-    // memesGalleryController.onInit()
     window.addEventListener('resize', () => {
         memeController.onInit()
       })

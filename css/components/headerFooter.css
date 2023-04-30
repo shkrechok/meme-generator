@@ -14,7 +14,9 @@
 }
 
 
-
+.main-nav{
+    gap: 1rem;
+}
 .main-nav button.active {
     color: #000000;
 }

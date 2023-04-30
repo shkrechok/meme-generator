@@ -115,6 +115,12 @@ const memService = {
         const meme = this.currMeme
         meme.lines[meme.selectedLineIdx].fillColor = colorValue
     },
+
+    setLineStrokeColor: function (colorValue) {
+        const meme = this.currMeme
+        meme.lines[meme.selectedLineIdx].strokeColor = colorValue
+    },
+    
     setLineFontSize: function (diff) {
         const meme = this.currMeme
         meme.lines[meme.selectedLineIdx].size += diff

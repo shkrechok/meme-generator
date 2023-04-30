@@ -2,26 +2,37 @@
 
 const editorController = {
     colorPicker: document.querySelector('.color-picker'),
+    strokeFill: 'fill',
     elLineInput: document.querySelector('.line-input'),
     
     onInit() {
-        this.renderColorsPalette()
         this.renderLinePlaceholder()
     },
 
-    toggleColorPicker: function () {
+    toggleColorPicker: function (strokeFill) {
         this.colorPicker.classList.toggle('hidden')
+        this.strokeFill = strokeFill
+        this.renderColorsPalette()
+        console.log('this.strokeFill:', this.strokeFill)
         console.log('this.colorPicker:', this.colorPicker)
     },
 
     renderColorsPalette: function () {
         const colorPicker = document.querySelector('.color-picker')
         const colors = colorsPalete.getColors()
-
+        colorPicker.innerHTML = ''
+        if (this.strokeFill === 'stroke') {
+          
+        colors.forEach(color => {
+            const strHtmls = `<div class="color" style="background-color: ${color}" onclick="editorController.onFontStrokeChange('${color}')"></div>`
+            colorPicker.innerHTML += strHtmls
+        })
+     } else {
         colors.forEach(color => {
             const strHtmls = `<div class="color" style="background-color: ${color}" onclick="editorController.onFontFillChange('${color}')"></div>`
             colorPicker.innerHTML += strHtmls
         })
+    }
 
     },
     
@@ -31,6 +42,11 @@ const editorController = {
     
     onFontFillChange: function (colorValue) {
         memeController.onFontFillChange(colorValue)
+        this.toggleColorPicker()// Closes the color picker after selecting a color
+    },
+
+    onFontStrokeChange: function (colorValue) {
+        memeController.onFontStrokeChange(colorValue)
         this.toggleColorPicker()// Closes the color picker after selecting a color
     },
 
@@ -65,7 +81,6 @@ const editorController = {
         const data = memeController.elCanvas.toDataURL()
         elLink.href = data
         elLink.download = 'my-meme.jpg'
-        elLink.click()
     },
 
     onSaveMeme: function () {

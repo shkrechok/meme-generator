@@ -36,6 +36,11 @@ const memeController = {
         this.renderMem()
     },
 
+    onFontStrokeChange: function (colorValue) {
+        memService.setLineStrokeColor(colorValue)
+        this.renderMem()
+    },
+
     onFontSizeChange: function (diff) {
         memService.setLineFontSize(diff)
         this.renderMem()
